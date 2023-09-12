@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
-use \App\Http\Requests\NoteRequest;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 use App\Services\MarkdownService;
+use \App\Http\Requests\NoteRequest;
+use App\Http\Controllers\Controller;
+use App\Services\MarkdownServiceInterface;
 
 final class NotesController extends Controller
 {
@@ -37,10 +39,9 @@ final class NotesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Note $note): View
+    public function show(Note $note, MarkdownServiceInterface $md): View
     {
-        $service = new MarkdownService;
-        $note->body = nl2br($service->parse($note->body));
+        $note->body = nl2br($md->parse($note->body));
 
         return view('notes.show', [
             'note' => $note,

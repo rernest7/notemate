@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use League\CommonMark\MarkdownConverter;
-use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use App\Services\MarkdownServiceInterface;
 use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 
-class MarkdownService
+class MarkdownService implements MarkdownServiceInterface
 {
 
     public function parse(string $text)
