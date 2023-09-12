@@ -42,7 +42,7 @@ final class NotesController extends Controller
      */
     public function show(Note $note, MarkdownServiceInterface $md): View
     {
-        $note->body = $md->parse($note->body);
+        $note->body = $md->parse($note->body)->getContent();
 
         return view('notes.show', [
             'note' => $note,
