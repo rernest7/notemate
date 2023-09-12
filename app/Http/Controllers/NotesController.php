@@ -41,7 +41,7 @@ final class NotesController extends Controller
      */
     public function show(Note $note, MarkdownServiceInterface $md): View
     {
-        $note->body = nl2br($md->parse($note->body));
+        $note->body = $md->parse($note->body);
 
         return view('notes.show', [
             'note' => $note,
