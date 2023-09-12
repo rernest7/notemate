@@ -5,6 +5,7 @@ namespace App\Services;
 use League\CommonMark\MarkdownConverter;
 use App\Services\MarkdownServiceInterface;
 use League\CommonMark\Environment\Environment;
+use League\CommonMark\Output\RenderedContentInterface;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 
@@ -16,7 +17,7 @@ class MarkdownService implements MarkdownServiceInterface
         'max_nesting_level' => 15,
     ];
 
-    public function parse(string $text)
+    public function parse(string $text): RenderedContentInterface
     {
         $env = new Environment($this->config);
         $env->addExtension(new CommonMarkCoreExtension());
