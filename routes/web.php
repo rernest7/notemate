@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::resource('notes', \App\Http\Controllers\NotesController::class)->except(['update']);
+Route::resource('notes', \App\Http\Controllers\NotesController::class);
+
 Route::redirect('/', route('notes.index'));
 
 

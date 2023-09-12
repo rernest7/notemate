@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Services\MarkdownService;
 use \App\Http\Requests\NoteRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Services\MarkdownServiceInterface;
 
 final class NotesController extends Controller
@@ -53,25 +54,28 @@ final class NotesController extends Controller
      */
     public function edit(Note $note): View
     {
-        return view('notes.create', [
+        return view('notes.edit', [
             'note' => $note,
         ]);
     }
 
     /**
-     * Update or Create a resource
+     * Create new resource
      */
     public function store(NoteRequest $request)
     {
-        $id = $request->input('note_id', null);
-        if ($id) {
-            $note = Note::findOrFail($id);
-            $note->update($request->validated());
-        } else {
-            $note = Note::create($request->all());
-        }
+        $note = Note::create($request->validated());
 
         return redirect()->route('notes.show', $note->id);
+    }
+
+    /**
+     * Update existing resource
+     */
+    public function update(NoteRequest $request, Note $note): RedirectResponse
+    {
+        $note->update($request->validated());
+        return redirect()->route('notes.show', $note);
     }
 
     /**
