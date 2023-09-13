@@ -13,7 +13,7 @@
 
             <div>
                 <label for="body">Body</label>
-                <textarea id="body" name="body">
+                <textarea id="body" name="body" style="width: 100%; ">
 {{ $note ? $note->body : old('body') }}
 </textarea>
             </div>
