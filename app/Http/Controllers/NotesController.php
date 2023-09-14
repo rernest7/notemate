@@ -25,6 +25,7 @@ final class NotesController extends Controller
         } else {
             $notes = Note::latest()->paginate();
         }
+
         // while $notes is a pagination collection thiss will work
         $notesCount = $notes->total();
 
