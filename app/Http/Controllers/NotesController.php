@@ -16,10 +16,17 @@ final class NotesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $notes = Note::latest()->paginate(15);
-        $notesCount = Note::count();
+        $search = $request->input('q');
+        if ($search) {
+            $search = "%{$search}%";
+            $notes = Note::orWhere('title', 'LIKE', $search)->orWhere('body', 'LIKE', $search)->paginate();
+        } else {
+            $notes = Note::latest()->paginate();
+        }
+        // while $notes is a pagination collection thiss will work
+        $notesCount = $notes->total();
 
         return view('notes.index', [
             'notes' => $notes,

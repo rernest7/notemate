@@ -15,6 +15,14 @@ Or import from existing .txt:
 </form>
 
 </div>
+
+<div>
+<h3>Search</h3>
+<form method="GET">
+<input type="text" name="q" value="{{ request()->input('q') }}"/>
+<button> Search</button>
+</form>
+</div>
 <h1>notes ({{ $notesCount }}):</h1>
 
 @if(!$notes)
