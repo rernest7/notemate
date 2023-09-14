@@ -14,8 +14,16 @@ $title = $note->title;
 <a href="{{ route('notes.download', [$note->id, 'txt']) }}">Download</a>
 </div>
 
+<div>
+Created {{ $note->created_at->diffForHumans() }} 
+@if($note->updated_at > $note->created_at )
+modified {{ $note->updated_at->diffForHumans() }}
+@endif
+</div>
+
 <h1>{{ $note->title }}</h1>
 <hr/>
+
 <div>
 {!! $note->body !!}
 </div>
