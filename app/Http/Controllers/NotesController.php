@@ -50,7 +50,8 @@ final class NotesController extends Controller
      */
     public function show(Note $note, MarkdownServiceInterface $md): View
     {
-        $note->body = nl2br($md->parse($note->body)->getContent());
+        // for UX: without this we would need double space after each line to initiate a line break
+        $note->body = $md->parse($note->body)->getContent();
 
         return view('notes.show', [
             'note' => $note,

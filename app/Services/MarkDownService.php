@@ -4,14 +4,22 @@ namespace App\Services;
 
 use League\CommonMark\MarkdownConverter;
 use App\Services\MarkdownServiceInterface;
+use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Output\RenderedContentInterface;
 use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use League\CommonMark\Extension\TaskList\TaskListExtension;
+use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 
 class MarkdownService implements MarkdownServiceInterface
 {
     private array         $config = [
+        'renderer' => [
+            'block_separator' => "  \n",
+            'inner_separator' => "\n",
+            'soft_break'      => "\n",
+        ],
         'html_input' => 'escape',
         'allow_unsafe_links' => false,
         'max_nesting_level' => 15,
@@ -22,6 +30,7 @@ class MarkdownService implements MarkdownServiceInterface
         $env = new Environment($this->config);
         $env->addExtension(new CommonMarkCoreExtension());
         $env->addExtension(new AutolinkExtension());
+        $env->addExtension(new TaskListExtension());
 
         $converter = new MarkdownConverter($env);
 
