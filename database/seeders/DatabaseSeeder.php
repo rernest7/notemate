@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         Category::fixTree();
 
         \App\Models\Note::factory(10, [
-            'category_id' => fn () => Category::inRandomOrder()->first()->id,
+            'category_id' => fn (): int => Category::inRandomOrder()->first()->id,
         ])->create();
     }
 }

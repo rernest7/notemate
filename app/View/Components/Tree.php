@@ -12,7 +12,7 @@ class Tree extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public $nodes = []
+        public array $nodes = []
     ) {
         //
     }

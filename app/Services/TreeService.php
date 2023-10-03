@@ -7,7 +7,7 @@ namespace App\Services;
  */
 final class TreeService
 {
-    public static function buildTree(): array
+    public static function buildTree($nodes): array
     {
         $tree = [];
 
