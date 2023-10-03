@@ -29,15 +29,9 @@ Or import from existing .txt:
 <p>No notes yet</p>
 @else
 @foreach($notes as $note)
-<div>
-<h3>{{ $note->title }}</h3>
-<p>
-{{ \Illuminate\Support\Str::limit($note->body, 150, $end='...') }}
-</p>
-<p>
-<a href="{{ route('notes.show', $note->id) }}">View ></a>
-</p>
-</div>
+
+<x-note-preview :note="$note" headingTag="h2" />
+
 @endforeach
 {{ $notes->links() }}
 @endif

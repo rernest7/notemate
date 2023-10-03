@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Services\MarkdownService;
@@ -38,10 +39,16 @@ final class NotesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
+        $prefills = [
+            'category' => (int) $request->input('category')
+        ];
+
         return view('notes.create', [
             'note' => null,
+            'categories' => Category::select(['id', 'name'])->get(),
+            'prefills' => $prefills,
         ]);
     }
 
@@ -65,6 +72,8 @@ final class NotesController extends Controller
     {
         return view('notes.edit', [
             'note' => $note,
+            'categories' => Category::get(),
+            'prefills' => ['category' => $note->category_id],
         ]);
     }
 

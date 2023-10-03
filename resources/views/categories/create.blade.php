@@ -7,8 +7,8 @@
         <h1>
             {{ $title }}
         </h1>
-
-        <x-note-form route="notes.store" :categories="$categories" :prefills="$prefills" />
+        
+        <x-note-form route="notes.store" />
     
     </div>
 @endsection

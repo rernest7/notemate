@@ -6,17 +6,18 @@ use Closure;
 use App\Models\Note;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 class NoteForm extends Component
 {
     public readonly string $route;
-    /**
-     * Create a new component instance.
-     */
+
     public function __construct(
         string $route,
         public readonly ?string $method = null,
-        public readonly ?Note $note = null
+        public readonly ?Note $note = null,
+        public ?Collection $categories = null,
+        public readonly array $prefills = []
     ) {
         $this->route = route($route, $note);
     }

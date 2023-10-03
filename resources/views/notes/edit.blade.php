@@ -8,7 +8,7 @@
             {{ $title }}
         </h1>
         
-        <x-note-form route="notes.update" method="PUT" :note="$note"/>
+        <x-note-form route="notes.update" method="PUT" :note="$note" :categories="$categories" :prefills="$prefills" />
     
     </div>
 @endsection

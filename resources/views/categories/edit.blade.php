@@ -1,5 +1,5 @@
 @php
-    $title = 'Create a new note';
+    $title = 'Edit note';
 @endphp
 @extends('layouts.app')
 @section('content')
@@ -7,8 +7,8 @@
         <h1>
             {{ $title }}
         </h1>
-
-        <x-note-form route="notes.store" :categories="$categories" :prefills="$prefills" />
+        
+        <x-note-form route="notes.update" method="PUT" :note="$note"/>
     
     </div>
 @endsection

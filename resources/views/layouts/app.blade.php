@@ -13,7 +13,22 @@
         </title>
     </head>
     <body>
+        
         <div style="padding:1rem; max-width: 720px; width: 100%;">
+            
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <h3>Klaida!</h3>
+
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
             @yield('content')
         </div>
     </body>

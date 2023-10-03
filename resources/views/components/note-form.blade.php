@@ -18,6 +18,25 @@
 </textarea>
             </div>
 
+            <div>
+<label for="category">Category</label>
+<<<<<<< HEAD
+<br/>
+<input id="category" type="text" name="category_id" value="{{ $note->category_id ?: '' }}" />
+=======
+
+<br/>
+
+<select id="category" name="category_id">
+        @foreach($categories as $cat)
+        <option value="{{ $cat->id }}" {{ $prefills['category'] == $cat->id ? 'selected' : '' }}>
+{{ $cat->name }}
+        </option>
+        @endforeach
+</select>
+>>>>>>> cats
+            </div>
+
 <div>
             <button>Save</button>
             </div>

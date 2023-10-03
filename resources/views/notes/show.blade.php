@@ -15,6 +15,11 @@ $title = $note->title;
 </div>
 
 <div>
+In 
+<A href="{{ route('categories.show', $note->category) }}">
+{{ $note->category->name }}
+</a>
+
 Created {{ $note->created_at->diffForHumans() }} 
 @if($note->updated_at > $note->created_at )
 modified {{ $note->updated_at->diffForHumans() }}
