@@ -18,8 +18,7 @@
         </div>
 
         <div>
-            Category: {{ $parentName }}
-            <br />
+            <!-- Category: {{ $parentName }} -->
             <input type="hidden" name="parent_id" value="{{ $parentId}}" />
         </div>
 
