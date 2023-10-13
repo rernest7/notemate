@@ -79,9 +79,14 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        $returnTo = $category->parent_id;
+
         $category->delete();
 
-        return back();
+        if ($returnTo) {
+            return redirect()->route('categories.show', $returnTo);
+        }
+        return redirect()->route('categories.index');
     }
 
     private function saveOrAppend(Category $cat, array $data): Category
