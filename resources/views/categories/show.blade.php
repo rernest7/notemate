@@ -8,7 +8,7 @@
     </div>
 
 <div>
-<form action="{{ route('categories.destroy', $category) }}" method="POST" onSubmit="confirm("All descendants will be deleted. Proceed?")">
+<form action="{{ route('categories.destroy', $category) }}" method="POST" onSubmit="confirm('All descendants will be deleted. Proceed?')">
         @csrf
         @method('DELETE')
         <button>Delete</button>

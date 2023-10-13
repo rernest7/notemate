@@ -4,9 +4,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div>
+    <section aria-labelledby="create-form">
+        <h1 id="create-form">Create a root category</h1>
         <x-category-form route="categories.store" />
-    </div>
+    </section>
 
     <h1>categories({{ $categoriesCount }}):</h1>
 
