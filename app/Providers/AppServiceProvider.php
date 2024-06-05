@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Actions\Notes\ReadNote;
+use App\Actions\ActionInterface;
+use App\Services\MarkdownService;
 use Illuminate\Support\ServiceProvider;
 use App\Services\MarkdownServiceInterface;
-use App\Services\MarkdownService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(MarkdownServiceInterface::class, MarkdownService::class);
+        $this->app->bind(ActionInterface::class, ReadNote::class);
     }
 
     /**

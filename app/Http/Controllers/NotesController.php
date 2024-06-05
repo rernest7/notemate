@@ -6,6 +6,8 @@ use App\Models\Note;
 use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Actions\Notes\ReadNote;
+// use App\Actions\ActionInterface;
 use App\Services\MarkdownService;
 use \App\Http\Requests\NoteRequest;
 use App\Http\Controllers\Controller;
@@ -55,10 +57,10 @@ final class NotesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Note $note, MarkdownServiceInterface $md): View
+    public function show(Note $note, MarkDownServiceInterface $md): View
     {
-        // for UX: without this we would need double space after each line to initiate a line break
-        $note->body = $md->parse($note->body)->getContent();
+        $body = new ReadNote($md);
+        $note->body = $body->execute($note->body);
 
         return view('notes.show', [
             'note' => $note,
