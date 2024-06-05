@@ -6,7 +6,7 @@ use Tests\TestCase;
 use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class NotesTest extends TestCase
+class NotesCRUDTest extends TestCase
 {
     use RefreshDatabase;
 

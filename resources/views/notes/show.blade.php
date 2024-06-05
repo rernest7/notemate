@@ -4,7 +4,7 @@ $title = $note->title;
 @extends('layouts.app')
 @section('content')
 <div>
-<a href="{{ route('notes.index') }}">(x) Close)</a>
+<a role="button" href="{{ route('notes.index') }}">&times; Close)</a>
 <a href="{{ route('notes.edit', $note->id) }}">Edit</a>
 <form onSubmit="confirm('Delete note?')" method="POST" action="{{ route('notes.destroy', $note->id) }}" style="display:inline;">
 @csrf
@@ -15,11 +15,12 @@ $title = $note->title;
 </div>
 
 <div>
-In 
+In Category:
 <A href="{{ route('categories.show', $note->category) }}">
 {{ $note->category->name }}
 </a>
-
+</div>
+<div>
 Created {{ $note->created_at->diffForHumans() }} 
 @if($note->updated_at > $note->created_at )
 modified {{ $note->updated_at->diffForHumans() }}
@@ -27,6 +28,7 @@ modified {{ $note->updated_at->diffForHumans() }}
 </div>
 
 <h1>{{ $note->title }}</h1>
+
 <hr/>
 
 <div>

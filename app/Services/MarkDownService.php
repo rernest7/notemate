@@ -12,7 +12,7 @@ use League\CommonMark\Extension\TaskList\TaskListExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 
-class MarkdownService implements MarkdownServiceInterface
+class MarkDownService
 {
     private array         $config = [
         'renderer' => [
@@ -34,7 +34,9 @@ class MarkdownService implements MarkdownServiceInterface
 
         $converter = new MarkdownConverter($env);
 
-        return $converter->convert($text);
+        $body = (str_replace("<br />", "  ", nl2br($text)));
+
+        return $converter->convert($body);
     }
 
     public function overwriteConfig(array $config): void

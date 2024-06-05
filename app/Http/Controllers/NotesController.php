@@ -7,8 +7,6 @@ use App\Models\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Actions\Notes\ReadNote;
-// use App\Actions\ActionInterface;
-use App\Services\MarkdownService;
 use \App\Http\Requests\NoteRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -51,19 +49,6 @@ final class NotesController extends Controller
             'note' => null,
             'categories' => Category::select(['id', 'name'])->get(),
             'prefills' => $prefills,
-        ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Note $note, MarkDownServiceInterface $md): View
-    {
-        $body = new ReadNote($md);
-        $note->body = $body->execute($note->body);
-
-        return view('notes.show', [
-            'note' => $note,
         ]);
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Notes\ShowNote;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\Notes\UploadNotesController;
@@ -8,7 +9,10 @@ use App\Http\Controllers\Notes\DownloadNotesController;
 
 Route::resource('categories', CategoriesController::class)->except(['create', 'edit']);
 
-Route::resource('notes', \App\Http\Controllers\NotesController::class);
+Route::get("notes/{id}", ShowNote::class)
+    ->name('notes.show');
+Route::resource('notes', \App\Http\Controllers\NotesController::class)
+    ->except(['show']);
 
 Route::redirect('/', route('categories.index'));
 

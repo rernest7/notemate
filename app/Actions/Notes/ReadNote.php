@@ -3,18 +3,19 @@
 namespace App\Actions\Notes;
 
 use App\Models\Note;
-use App\Services\MarkdownServiceInterface;
-use League\CommonMark\Output\RenderedContentInterface;
+use App\Services\MarkDownService;
 
 class ReadNote
 {
-    public function __construct(
-        private MarkdownServiceInterface $md
-    ) {
+    private $md;
+    public function __construct()
+    {
+        $this->md = new MarkDownService();
     }
+
     public function execute(string $body): string
     {
-
-        return $this->md->parse($body)->getContent();
+        $text = $this->md->parse($body);
+        return $text;
     }
 }
